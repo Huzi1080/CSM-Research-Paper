@@ -13,8 +13,8 @@ Adversarial sample detection using autoencoders
 
 Research Context
 
-Machine learning-based cybersecurity models, such as intrusion detection or malware detection systems, are vulnerable to evasion attacks that slightly modify inputs to cause misclassification.
-This project aims to measure that vulnerability and demonstrate strategies to make such models more resilient.
+- Machine learning-based cybersecurity models, such as intrusion detection or malware detection systems, are vulnerable to evasion attacks that slightly modify inputs to cause misclassification.
+- This project aims to measure that vulnerability and demonstrate strategies to make such models more resilient.
 
 Evaluation Metrics
 - Accuracy
