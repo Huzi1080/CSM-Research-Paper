@@ -1,67 +1,56 @@
 import pandas as pd
 import numpy as np
-import joblib
 import os
+import joblib
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import LabelEncoder, StandardScaler
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 
-model = joblib.load("models/baseline_model.pkl")
+# Set up directories
+DATA_DIR = "data"
+MODEL_DIR = "models"
+os.makedirs(MODEL_DIR, exist_ok=True)
 
-#Load test data 
-test_df = pd.read_csv("data/test.csv")
-X_test = test_df.drop("label", axis=1).values
-y_test = test_df["label"].values
+# Load data
+train_path = os.path.join(DATA_DIR, "train.csv")
+test_path = os.path.join(DATA_DIR, "test.csv")
 
-def fgsm_attack(X, epsilon=0.05):
-    """Simple FGSM-like perturbation: add small random noise"""
-    perturb = epsilon * np.sign(np.random.randn(*X.shape))
-    return X + perturb
+train_df = pd.read_csv(train_path)
+test_df = pd.read_csv(test_path)
 
-def pgd_attack(X, epsilon=0.05, alpha=0.01, iters=5):
-    """Simple PGD-like iterative attack"""
-    X_adv = X.copy()
-    for _ in range(iters):
-        perturb = alpha * np.sign(np.random.randn(*X.shape))
-        X_adv = np.clip(X_adv + perturb, X - epsilon, X + epsilon)  
-    return X_adv
+# Encode labels
+label_enc = LabelEncoder()
+train_df["label"] = label_enc.fit_transform(train_df["label"])
+test_df["label"] = label_enc.transform(test_df["label"])
 
+# Split into X and y
+X_train = train_df.drop("label", axis=1)
+y_train = train_df["label"]
 
-y_pred_clean = model.predict(X_test)
-results_clean = {
-    "dataset": "clean",
-    "accuracy": accuracy_score(y_test, y_pred_clean),
-    "precision": precision_score(y_test, y_pred_clean, pos_label="attack"),
-    "recall": recall_score(y_test, y_pred_clean, pos_label="attack"),
-    "f1_score": f1_score(y_test, y_pred_clean, pos_label="attack")
-}
+X_test = test_df.drop("label", axis=1)
+y_test = test_df["label"]
 
-X_fgsm = fgsm_attack(X_test)
-y_pred_fgsm = model.predict(X_fgsm)
-results_fgsm = {
-    "dataset": "fgsm",
-    "accuracy": accuracy_score(y_test, y_pred_fgsm),
-    "precision": precision_score(y_test, y_pred_fgsm, pos_label="attack"),
-    "recall": recall_score(y_test, y_pred_fgsm, pos_label="attack"),
-    "f1_score": f1_score(y_test, y_pred_fgsm, pos_label="attack")
-}
+# Normalize features
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
 
-X_pgd = pgd_attack(X_test)
-y_pred_pgd = model.predict(X_pgd)
-results_pgd = {
-    "dataset": "pgd",
-    "accuracy": accuracy_score(y_test, y_pred_pgd),
-    "precision": precision_score(y_test, y_pred_pgd, pos_label="attack"),
-    "recall": recall_score(y_test, y_pred_pgd, pos_label="attack"),
-    "f1_score": f1_score(y_test, y_pred_pgd, pos_label="attack")
-}
+# Train model
+print("🚀 Training baseline RandomForest model...")
+model = RandomForestClassifier(n_estimators=100, random_state=42)
+model.fit(X_train, y_train)
 
-os.makedirs("results", exist_ok=True)
-os.makedirs("attacks", exist_ok=True)
+# Evaluate
+y_pred = model.predict(X_test)
+acc = accuracy_score(y_test, y_pred)
+prec = precision_score(y_test, y_pred, average='macro')
+rec = recall_score(y_test, y_pred, average='macro')
+f1 = f1_score(y_test, y_pred, average='macro')
 
-pd.DataFrame([results_clean, results_fgsm, results_pgd]).to_csv("results/attacked_results.csv", index=False)
-np.save("attacks/adv_fgsm.npy", X_fgsm)
-np.save("attacks/adv_pgd.npy", X_pgd)
+print(f"✅ Model trained successfully!")
+print(f"Accuracy: {acc:.4f}, Precision: {prec:.4f}, Recall: {rec:.4f}, F1: {f1:.4f}")
 
-print("Attacks complete!")
-print("Results saved to results/attacked_results.csv")
-print("Adversarial data saved to attacks/adv_fgsm.npy and attacks/adv_pgd.npy")
-print(results_clean, results_fgsm, results_pgd)
+# Save model
+joblib.dump(model, os.path.join(MODEL_DIR, "baseline_model.pkl"))
+print("💾 Model saved to models/baseline_model.pkl")
