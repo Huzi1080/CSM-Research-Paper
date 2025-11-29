@@ -1,41 +1,69 @@
-# Adversarial Robustness in Machine Learning-Based Network Security
+# Adversarial Robustness in Network Intrusion Detection Systems
 
-This research project investigates how adversarial attacks degrade the performance of machine-learning models used in network security applications and explores defense strategies that improve model robustness.
+**Author:** Huzaifa Anis  
+**Institution:** Illinois Institute of Technology  
+**Course:** ITMS 478 – Research Project Implementation  
+**Repository:** [CSM-Research-Paper](https://github.com/Huzi1080/CSM-Research-Paper)
 
 ---
 
 ## Overview
 
-Machine-learning models are increasingly used in cybersecurity systems such as intrusion detection, malware classification, and phishing detection.  
-However, these models are vulnerable to **adversarial attacks**—small, carefully crafted input perturbations that cause misclassification.
+This project investigates the **robustness of machine learning models for intrusion detection systems (IDS)** against **adversarial attacks**.  
+The implementation builds upon the baseline paper:
 
-This project replicates and extends prior research on adversarial robustness to:
-1. Reconstruct a baseline intrusion-detection model.
-2. Generate and evaluate adversarial attacks.
-3. Implement and test defense mechanisms that harden ML models against such attacks.
+> *"Adversarial Robustness of Network Intrusion Detection Systems: An Empirical Study"* (arXiv:1911.02621v3)
+
+The goal is to:
+- Recreate the baseline IDS experiment using the **NSL-KDD dataset**
+- Apply **adversarial perturbations** (FGSM & PGD)
+- Evaluate model performance degradation and visualize it through multiple analytical plots
+- Summarize robustness results quantitatively and visually for research reporting
 
 ---
 
 ##  Research Objectives
 
-1. Reconstruct a baseline intrusion-detection model using **NSL-KDD** or **CICIDS2017** dataset.  
-2. Implement **Fast Gradient Sign Method (FGSM)** and **Projected Gradient Descent (PGD)** attacks to assess robustness.  
-3. Evaluate model performance degradation in terms of:
-   - Accuracy  
-   - Precision  
-   - Recall  
-   - F1-Score  
-   - ROC-AUC  
-4. Propose and test defense strategies:
-   - Adversarial training  
-   - Noise injection  
-   - Adversarial-sample detection using autoencoders  
+1. **Reproduce baseline model** performance on NSL-KDD dataset.  
+2. **Implement adversarial perturbations** (Fast Gradient Sign Method and Projected Gradient Descent).  
+3. **Quantify model degradation** in terms of accuracy, precision, recall, and F1-score.  
+4. **Visualize degradation and recovery potential** through metrics, heatmaps, and ROC/PR curves.  
+5. **Generate a reproducible analysis pipeline** for future research comparison.
 
 ---
 
-## 📂 Repository Structure
+##  Methodology
 
---
+### 1. Dataset Preparation  
+- Uses **NSL-KDD**, a standard dataset for network intrusion detection.  
+- Data preprocessing: label encoding, feature scaling, and train-test split.  
+- Script: [`scripts/download_nsl_kdd.py`](scripts/download_nsl_kdd.py)
+
+### 2. Baseline Model Training  
+- Model: Random Forest (baseline classifier).  
+- Saved model artifact: `models/baseline_model.pkl`  
+- Script: [`scripts/train_baseline.py`](scripts/train_baseline.py)
+
+### 3. Adversarial Attack Generation  
+- **FGSM Attack:** Adds signed perturbations to simulate minimal adversarial noise.  
+- **PGD Attack:** Iteratively perturbs test data to simulate stronger, repeated attacks.  
+- Script: [`scripts/attacks_numpy.py`](scripts/attacks_numpy.py)
+
+### 4. Graphical Analysis and Evaluation  
+- Evaluates and visualizes model resilience using:
+  - Confusion matrices
+  - Accuracy/F1 bar plots
+  - Heatmaps
+  - ROC & PR curves
+  - Risk likelihood-impact map  
+- Script: [`scripts/analyze_results.py`](scripts/analyze_results.py)
+
+### 5. Automated Pipeline  
+To simplify replication, a **single command** runs the entire workflow:
+
+```bash
+python run_pipeline.py
+
 
 ## Loom Recording 
 
