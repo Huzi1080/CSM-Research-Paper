@@ -1,59 +1,85 @@
 Research Paper Summary Template
+
 Title and Citation of the Paper:
 Title: The Threat of Adversarial Attacks Against Machine Learning in Network Security: A Survey
 Authors: Olakunle Ibitoye, Rana Abou-Khamis, Mohamed el Shehaby, Ashraf Matrawy, and M. Omair Shafiq
-Year of Publication: Submitted in 2019 and last revised in 2023 
-Full Citation (in the preferred citation style): Ibitoye, O., Abou-Khamis, R., El Shehaby, M., Matrawy, A., & Omair, M. (2023). The Threat of Adversarial Attacks Against Machine Learning in Network Security: A Survey. https://arxiv.org/pdf/1911.02621
+Year of Publication: Submitted in 2019 and last revised in 2023
+Full Citation (in the preferred citation style):
+Ibitoye, O., Abou-Khamis, R., El Shehaby, M., Matrawy, A., & Omair, M. (2023). The Threat of Adversarial Attacks Against Machine Learning in Network Security: A Survey. https://arxiv.org/pdf/1911.02621
+
 Objective and Research Question:
-What is the main objective of the paper? To provide a comprehensive survey of adversarial attacks on machine learning (ML) models within the context of network security. Furthermore, the goal of this paper is to review and organize all the research on how attackers attempt to deceive AI models used in cybersecurity settings.
+What is the main objective of the paper?
+To provide a comprehensive survey of adversarial attacks on machine learning (ML) models within the context of network security. Furthermore, the goal of this paper is to review and organize all the research on how attackers attempt to deceive AI models used in cybersecurity settings.
+
 What research question(s) does the paper aim to address?
+
 What are the primary adversarial attack techniques used to target AI or machine learning systems in cybersecurity, such as intrusion detection, malware, or phishing detection?
-How effective are the current defensive systems (adversarial training and robust optimization) towards mitigating attacks? 
+
+How effective are the current defensive systems (adversarial training and robust optimization) towards mitigating attacks?
+
 What are the risks associated with adversarial attacks towards organizations that typically rely on AI-driven security teams?
+
 How can governance and risk management frameworks be designed to address these threats to AI in the cybersecurity field?
+
 What are the ongoing research and practices to implement a stronger and more trustworthy AI model for cyber attacks?
+
 Technique/Methodology:
-What technique or methodology is proposed or used in the paper? The paper does not provide a technique or a new algorithm; however, it focuses on conducting a survey.
-How does this technique contribute to the field? Is it a novel approach or an improvement over existing methods? 
+What technique or methodology is proposed or used in the paper?
+The paper does not provide a technique or a new algorithm; however, it focuses on conducting a survey.
+
+How does this technique contribute to the field? Is it a novel approach or an improvement over existing methods?
 The paper organizes the adversarial attacks into different categories (evasion, poisoning, model extraction, and inference), such as evasion, where attackers trick the model into misclassifying data. In addition, there is model extraction, where they steal the model's behavior and the way it works, along with inference, where they try to figure out sensitive data from the AI model.
 However, they review existing defense strategies such as adversarial training, detection methods, and techniques to make models stronger.
 The authors introduce an “adversarial risk grid map”, which is a way to measure and evaluate risks that malicious attacks pose to machine learning in cybersecurity.
 This paper provides a novel approach that emphasizes network security applications such as model extraction, malware, phishing, and more.
+
 Dataset(s) Used:
 What dataset(s) were used for experimentation and analysis?
-The paper did not run experiments nor did it run new databases, since it was a survey paper
-However, the paper revealed common databases used in adversarial machine learning systems for research purposes, such as NSL-KDD, CICIDS2017, UNSW-NB15, and malware/phishing corpora
-Are these datasets publicly available, and do they represent the problem space adequately? Yes, many of these databases are publicly available and are commonly used to test how well AI can handle cyber attacks 
+The paper did not run experiments nor did it run new databases, since it was a survey paper.
+However, the paper revealed common databases used in adversarial machine learning systems for research purposes, such as NSL-KDD, CICIDS2017, UNSW-NB15, and malware/phishing corpora.
+
+Are these datasets publicly available, and do they represent the problem space adequately?
+Yes, many of these databases are publicly available and are commonly used to test how well AI can handle cyber attacks.
+
 Empirical Results:
-What experiments were conducted to validate the technique? There were no experiments conducted within the paper. Therefore, there were no performance metrics evaluated. Instead, it summarizes findings from prior studies, showing how adversarial attacks can reduce the performance of machine learning models in cybersecurity.
+What experiments were conducted to validate the technique?
+There were no experiments conducted within the paper. Therefore, there were no performance metrics evaluated. Instead, it summarizes findings from prior studies, showing how adversarial attacks can reduce the performance of machine learning models in cybersecurity.
+
 What were the key metrics used to evaluate performance (e.g., accuracy, precision, recall, F1-score)?
 Summarize the empirical results and how they compare to baseline methods or previous work.
+
 Overall Results and Findings:
 What are the main findings of the paper?
+
 Machine learning based cybersecurity systems are vulnerable to adversarial attacks.
+
 The current defense strategies against these attacks are patchy, and they respond to problems after they appear. In addition, they don’t cover all the ongoing issues, and only work in specific cybersecurity applications where needed.
+
 The authors emphasize the need for a comprehensive framework to analyze how well these models can withstand attacks.
+
 How do the results support or refute the initial hypothesis or research question?
 These findings support the paper’s purpose of identifying adversarial attack methods, reviewing existing defenses, and evaluating their weaknesses.
+
 Did the authors discuss any limitations or future work?
 The authors explain that current research doesn’t have common benchmarks, studies that cover different areas, or defenses that work everywhere. They suggest that future work should focus on creating clear frameworks and standard ways to test how well AI models can handle adversarial attacks.
 
-
 Student's Insights and Critical Analysis:
-What are your insights or reflections on the paper?  
-The paper gives a clear overview of adversarial attacks in cybersecurity and organizes them into easy-to-follow categories.
- It highlights how vulnerable current AI systems are, which makes me realize the importance of stronger governance and testing methods.
-I think it’s a valuable resource because it connects technical issues with broader risks.
+What are your insights or reflections on the paper?
+The paper gives a clear overview of adversarial attacks in cybersecurity and organizes them into easy-to-follow categories. It highlights how vulnerable current AI systems are, which makes me realize the importance of stronger governance and testing methods. I think it’s a valuable resource because it connects technical issues with broader risks.
 
-Do you find the methodology and results convincing? Why or why not? 
+Do you find the methodology and results convincing? Why or why not?
 Yes, the methodology is convincing because it systematically reviews a wide range of studies.
 However, it does not include original experiments or direct comparisons, which limits how strongly the results can be evaluated.
 Still, as a survey, it provides a solid foundation for understanding the field.
 
 How could this work be improved or extended in future research?
+
 Create standardized benchmarks to test defenses fairly across studies.
+
 Compare multiple defense methods on the same datasets to see which are most effective.
+
 Explore cross-domain applications to see if defenses generalize beyond one specific area (e.g., from intrusion detection to malware detection).
+
 Develop governance frameworks to guide organizations in evaluating AI robustness.
 
 How does this paper contribute to your own research or the field in general?
@@ -61,11 +87,14 @@ It provides the baseline taxonomy of adversarial attacks and defenses that I can
 It highlights research gaps, especially the lack of governance frameworks, which connect directly to my project.
 For the field, it pushes researchers to look beyond just technical defenses and consider resilience and policy-level solutions.
 
-
 Relevance to Your Research:
-How is this paper relevant to your current research focus or thesis? This paper is directly relevant to my research because it provides different types of attacks and defense strategies that I can use as a foundation. The paper also highlights important gaps, such as the lack of standardized benchmarks and governance frameworks, which align with the direction I plan to explore further in my research.
-Can any of the techniques or findings be applied or adapted to your research? Some of its techniques and findings can be directly applied to my work, for example, the attack and defense categorizations help structure my analysis, and the “adversarial risk grid map” can be adapted to evaluate risks from a governance perspective. Furthermore, the paper points out that current defenses are reactive, scattered, and specific to certain areas, which supports my focus on creating stronger governance strategies to make AI more resilient in cybersecurity.
-By following this template, you can systematically analyze and summarize research papers, ensuring that you cover all critical aspects and provide your own insights.
-Additional text for future reference :
+How is this paper relevant to your current research focus or thesis?
+This paper is directly relevant to my research because it provides different types of attacks and defense strategies that I can use as a foundation. The paper also highlights important gaps, such as the lack of standardized benchmarks and governance frameworks, which align with the direction I plan to explore further in my research.
+
+Can any of the techniques or findings be applied or adapted to your research?
+Some of its techniques and findings can be directly applied to my work, for example, the attack and defense categorizations help structure my analysis, and the “adversarial risk grid map” can be adapted to evaluate risks from a governance perspective. Furthermore, the paper points out that current defenses are reactive, scattered, and specific to certain areas, which supports my focus on creating stronger governance strategies to make AI more resilient in cybersecurity.
+
+Additional text for future reference:
 https://www.sciencedirect.com/science/article/pii/S2214212620308607
+
 https://arxiv.org/pdf/1911.02621
