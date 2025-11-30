@@ -23,19 +23,19 @@ SCRIPTS = [
 
 def run_step(script_path):
     print("\n" + "="*70)
-    print(f"▶ Running {script_path} ...")
+    print(f" Running {script_path} ...")
     print("="*70)
     start = time.time()
     try:
         subprocess.run(["python", script_path], check=True)
     except subprocess.CalledProcessError as e:
-        print(f"❌ Error while running {script_path}: {e}")
+        print(f" Error while running {script_path}: {e}")
         raise
     end = time.time()
-    print(f"✅ Completed {script_path} in {end - start:.1f} seconds")
+    print(f"Completed {script_path} in {end - start:.1f} seconds")
 
 def main():
-    print("\n🚀 Starting full research pipeline...\n")
+    print("\n Starting full research pipeline...\n")
     os.makedirs("results", exist_ok=True)
     os.makedirs("models", exist_ok=True)
     os.makedirs("data", exist_ok=True)
@@ -43,14 +43,14 @@ def main():
 
     for script in SCRIPTS:
         if not os.path.exists(script):
-            print(f"⚠️ Skipping missing script: {script}")
+            print(f" Skipping missing script: {script}")
             continue
         run_step(script)
 
-    print("\n🎯 Pipeline finished successfully!")
-    print("📊 Results: see the 'results/' folder for plots and summary_report.md")
-    print("🧠 Model: stored in 'models/baseline_model.pkl'")
-    print("💥 Adversarial samples: stored in 'attacks/'")
+    print("\n Pipeline finished successfully!")
+    print(" Results: see the 'results/' folder for plots and summary_report.md")
+    print(" Model: stored in 'models/baseline_model.pkl'")
+    print(" Adversarial samples: stored in 'attacks/'")
 
 if __name__ == "__main__":
     main()
