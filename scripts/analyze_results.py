@@ -12,14 +12,12 @@ RESULTS_DIR = "results"
 ATTACKS_DIR = "attacks"
 os.makedirs(RESULTS_DIR, exist_ok=True)
 
-# ---------- 1) Safe load of metrics ----------
 attacked_path = os.path.join(RESULTS_DIR, "attacked_results.csv")
 if not os.path.exists(attacked_path) or os.path.getsize(attacked_path) == 0:
     raise FileNotFoundError("❌ 'attacked_results.csv' missing or empty. Run attacks_numpy.py first.")
 
 attacked = pd.read_csv(attacked_path)
 
-# try loading baseline; create a dummy baseline if not present
 baseline_path = os.path.join(RESULTS_DIR, "baseline_results.csv")
 if os.path.exists(baseline_path) and os.path.getsize(baseline_path) > 0:
     baseline_val = pd.read_csv(baseline_path)
@@ -33,7 +31,7 @@ else:
     }])
     baseline_val.to_csv(baseline_path, index=False)
 
-# ---------- 2) bar charts ----------
+#   bar charts
 def bar_plot(metric, fn):
     plt.figure()
     order = [d for d in ["clean", "fgsm", "pgd"] if d in attacked["dataset"].values]
@@ -51,7 +49,7 @@ def bar_plot(metric, fn):
 bar_plot("accuracy", "accuracy_drop.png")
 bar_plot("f1_score", "f1_drop.png")
 
-# ---------- 3) performance heatmap ----------
+#  performance heatmap
 def performance_heatmap():
     view = attacked.set_index("dataset")[["accuracy","precision","recall","f1_score"]]
     fig, ax = plt.subplots(figsize=(6, 3.6))
@@ -70,7 +68,7 @@ def performance_heatmap():
 
 performance_heatmap()
 
-# ---------- 4) confusion matrices (optional, only if arrays exist) ----------
+#   confusion matrices (optional, only if arrays exist) 
 def plot_cm(y_true, y_pred, title, fn):
     cm = confusion_matrix(y_true, y_pred, labels=[0,1])
     disp = ConfusionMatrixDisplay(cm, display_labels=["normal","attack"])
@@ -97,7 +95,7 @@ if y_true_bin is not None and y_pred_fgsm is not None:
 if y_true_bin is not None and y_pred_pgd is not None:
     plot_cm(y_true_bin, y_pred_pgd, "Confusion Matrix — PGD", "confusion_matrix_pgd.png")
 
-# ---------- 5) ROC & PR curves ----------
+# ROC & PR curves 
 def roc_and_pr_curves():
     def load_or_nan(name):
         path = os.path.join(RESULTS_DIR, name)
@@ -136,7 +134,7 @@ def roc_and_pr_curves():
 
 roc_and_pr_curves()
 
-# ---------- 6) risk grid map ----------
+#  risk grid map 
 risk = pd.DataFrame({
     "attack": ["FGSM", "PGD"],
     "likelihood": [0.8, 0.9],
@@ -156,7 +154,7 @@ plt.tight_layout()
 plt.savefig(os.path.join(RESULTS_DIR, "risk_grid_map.png"), dpi=200)
 plt.close()
 
-# ---------- 7) markdown summary ----------
+#  markdown summary 
 lines = []
 lines.append("# Adversarial Evaluation — Summary\n")
 lines.append("## Aggregate Metrics\n")
@@ -177,4 +175,4 @@ lines += [
 with open(os.path.join(RESULTS_DIR, "summary_report.md"), "w", encoding="utf-8") as f:
     f.write("\n".join(lines))
 
-print("✅ Analysis complete — see 'results/' folder for CSVs, PNGs, and summary_report.md.")
+print(" Analysis complete — see 'results/' folder for CSVs, PNGs, and summary_report.md.")
