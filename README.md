@@ -1,12 +1,11 @@
-# Adversarial Attacks on AI Models in Cybersecurity
+ Adversarial Attacks on AI Models in Cybersecurity
 
-**Author:** Huzaifa Anis  
-**Institution:** Illinois Institute of Technology  
-**Course:** ITMS 478 – Research Project Implementation  
+Author: Huzaifa Anis  
+Institution: Illinois Institute of Technology  
+Course: ITMS 478 – Research Project Implementation  
 
 ---
-
-## Overview
+Overview
 
 This project investigates the **robustness of machine learning models for intrusion detection systems (IDS)** against **adversarial attacks**.  
 The implementation builds upon the baseline paper:
@@ -18,8 +17,7 @@ The goal is to:
 - Summarize robustness results quantitatively and visually for research reporting
 
 ---
-
-##  Research Objectives
+Research Objectives
 
 1. **Reproduce baseline model** performance on NSL-KDD dataset.  
 2. **Implement adversarial perturbations** (Fast Gradient Sign Method and Projected Gradient Descent).  
@@ -28,34 +26,29 @@ The goal is to:
 5. **Generate a reproducible analysis pipeline** for future research comparison.
 
 ---
+ Methodology
 
-##  Methodology
-
-### 1. Dataset Preparation  
+1. Dataset Preparation  
 - Uses **NSL-KDD**, a standard dataset for network intrusion detection.  
 - Data preprocessing: label encoding, feature scaling, and train-test split.  
-- Script: [`scripts/download_nsl_kdd.py`](scripts/download_nsl_kdd.py)
 
-### 2. Baseline Model Training  
+2. Baseline Model Training  
 - Model: Random Forest (baseline classifier).  
 - Saved model artifact: `models/baseline_model.pkl`  
-- Script: [`scripts/train_baseline.py`](scripts/train_baseline.py)
 
-### 3. Adversarial Attack Generation  
+3. Adversarial Attack Generation  
 - **FGSM Attack:** Adds signed perturbations to simulate minimal adversarial noise.  
 - **PGD Attack:** Iteratively perturbs test data to simulate stronger, repeated attacks.  
-- Script: [`scripts/attacks_numpy.py`](scripts/attacks_numpy.py)
 
-### 4. Graphical Analysis and Evaluation  
+4. Graphical Analysis and Evaluation  
 - Evaluates and visualizes model resilience using:
   - Confusion matrices
   - Accuracy/F1 bar plots
   - Heatmaps
   - ROC & PR curves
   - Risk likelihood-impact map  
-- Script: [`scripts/analyze_results.py`](scripts/analyze_results.py)
 
-### 5. Automated Pipeline  
+5. Automated Pipeline  
 To simplify replication, a **single command** runs the entire workflow:
 python run_pipeline.py
 
