@@ -3,7 +3,6 @@
 **Author:** Huzaifa Anis  
 **Institution:** Illinois Institute of Technology  
 **Course:** ITMS 478 – Research Project Implementation  
-**Repository:** [CSM-Research-Paper](https://github.com/Huzi1080/CSM-Research-Paper)
 
 ---
 
@@ -11,8 +10,6 @@
 
 This project investigates the **robustness of machine learning models for intrusion detection systems (IDS)** against **adversarial attacks**.  
 The implementation builds upon the baseline paper:
-
-> *"Adversarial Robustness of Network Intrusion Detection Systems: An Empirical Study"* (arXiv:1911.02621v3)
 
 The goal is to:
 - Recreate the baseline IDS experiment using the **NSL-KDD dataset**
